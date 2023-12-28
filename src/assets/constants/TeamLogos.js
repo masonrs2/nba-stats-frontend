@@ -22,7 +22,6 @@ import thunderLogo from '/images/thunder-logo.png';
 import magicLogo from '/images/magic-logo.png';
 import sixersLogo from '/images/sixers-logo.png';
 import sunsLogo from '/images/suns-logo.png';
-
 import blazersLogo from '/images/blazers-logo.png';
 import kingsLogo from '/images/kings-logo.png';
 import spursLogo from '/images/spurs-logo.png';
