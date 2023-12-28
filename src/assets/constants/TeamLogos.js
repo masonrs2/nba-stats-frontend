@@ -25,6 +25,7 @@ export const TeamLogos = [
         "Logo": "/images/bulls-logo.png"
     },
     {
+        
         "Name": "Cleveland Cavaliers",
         "Abbreviation": "CLE",
         "Logo": "/images/cavs-logo.png"
@@ -154,7 +155,7 @@ export const TeamLogos = [
 export function getTeamLogo(teamAbbreviation) {
     for (let i = 0; i < TeamLogos.length; i++) {
         if (TeamLogos[i].Abbreviation == teamAbbreviation) {
-            return TeamLogos[i].Logo;
+            return "/images/wizards-logo.png";
         }
     }
 }
