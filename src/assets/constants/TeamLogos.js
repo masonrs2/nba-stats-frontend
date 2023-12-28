@@ -1,4 +1,4 @@
-import hawksLogo from '../images/hawks-logo.png';
+import hawksLogo from '/src/assets/images/hawks-logo.png';
 import celticsLogo from '../images/celtics-logo.png';
 import netsLogo from '../images/nets-logo.png';
 import hornetsLogo from '../images/hornets-logo.png';
