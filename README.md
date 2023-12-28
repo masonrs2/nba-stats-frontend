@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 # nba-stats-fronend
 # nba-stats-fronend
 # nba-stats-fronend
+# nba-stats-frontend
