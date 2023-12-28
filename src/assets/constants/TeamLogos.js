@@ -34,7 +34,7 @@ export const TeamLogos = [
     {
         "Name": "Atlanta Hawks",
         "Abbreviation": "ATL",
-        "Logo": hawksLogo
+        "Logo": "/images/hawks-logo.png"
     },
     {
         "Name": "Boston Celtics",
