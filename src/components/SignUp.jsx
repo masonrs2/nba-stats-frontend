@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import google from '../assets/Images/google.png'
-import github from '../assets/Images/github.png'
+import google from '/Images/google.png'
+import github from '/Images/github.png'
 import { Link } from 'react-router-dom'
 
 const signUpWithEmail = () => {}
