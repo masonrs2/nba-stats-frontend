@@ -72,10 +72,10 @@ const StatCard = ({ stat, playerData }) => {
                     <TableCell>
                     <div className="flex items-center gap-1">
                         <div className="w-8 h-8 rounded-full overflow-hidden flex items-center">
-                        <img className="object-cover" src={getTeamLogo(playerData[0]?.TEAM_ABBREVIATION)} alt={playerData[0]?.TEAM_ABBREVIATION} />
+                        <img className="object-cover" src="/images/wizards-logo.png" alt={playerData[0]?.TEAM_ABBREVIATION} />
                         </div>
                         <div className="rounded-full overflow-hidden flex items-center">
-                          <TfiUser height={20} width={20} className="object-cover h-9 w-9" src={getTeamLogo(playerData[0]?.TEAM_ABBREVIATION)} alt={playerData[0]?.TEAM_ABBREVIATION} />
+                          <TfiUser height={20} width={20} className="object-cover h-9 w-9" src="/images/wizards-logo.png" alt={playerData[0]?.TEAM_ABBREVIATION} />
                         </div>
                     </div>
                     </TableCell>
