@@ -14,6 +14,8 @@ import SignUp from "./components/SignUp"
 import GameSchedule from "./components/GameSchedule"
 import FantasyStatsPage from "./components/FantasyStatsPage"
 import { AuthProvider } from "./AuthContext"
+import Account from "./components/Account"
+import Footer from "./components/Footer"
 
 function App() {
   let Persistor = persistStore(store, {timeout: 10000});
@@ -33,6 +35,7 @@ function App() {
               <Route exact path="/nba/stats/fantasy" element={<FantasyStatsPage />} />
               <Route exact path="/nba/schedule" element={<GameSchedule />} />
               <Route exact path="/register" element={<SignUp />} />
+              <Route exact path="/account" element={<Account />} />
                 <Route path="/" element={
                   <>
                     
@@ -41,6 +44,7 @@ function App() {
                 }>
                 </Route>
               </Routes>
+            <Footer />
           </div>
         {/* </PersistGate> */}
       </AuthProvider>

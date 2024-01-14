@@ -65,7 +65,7 @@ const GameSchedule = () => {
   }, [selectedLocalDate]);
 
   return (
-    <div className="h-screen w-screen">
+    <div className="h-full w-screen">
       {
         isLoading ? (<div className="flex m-40 text-xl">Loading...</div>)
         :
@@ -74,7 +74,7 @@ const GameSchedule = () => {
         <div className="relative">
 
           <div className="flex gap-5 rounded-md" >
-            <div className="bg-red-400 grid grid-cols-3 items-center " >
+            <div className="grid grid-cols-3 items-center text-gray-300 font-semibold text-xl" >
               Todays Games.
             </div>
             <div
@@ -92,7 +92,7 @@ const GameSchedule = () => {
                 mode="single"
                 selected={date}
                 onSelect={setDate}
-                className="rounded-md border mt-4 ml-24 md:ml-80"
+                className="rounded-md border-2 border-zinc-500 mt-4 ml-24 md:ml-80 bg-zinc-400 "
               />
               )
             }
