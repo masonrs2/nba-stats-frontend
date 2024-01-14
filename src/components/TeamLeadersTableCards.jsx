@@ -39,7 +39,7 @@ const TeamLeadersTableCards = () => {
     }
   }, []);
   return (
-    <div className="w-screen h-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 pt-8 px-12">
+    <div className="w-screen h-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 pt-8 px-16 md:px-20 lg:px-24 2xl:px-32">
       {
         allTeamStatsData ? LeadingTeamStats.map((stat, index) => (
           <LeadingTeamStatsCard key={index} stat={stat} isLoading={isLoading} teamData={allTeamStatsData[index]?.data} />
