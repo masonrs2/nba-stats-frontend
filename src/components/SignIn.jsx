@@ -2,14 +2,46 @@ import React, { useState } from 'react'
 import google from '../assets/images/google.png'
 import github from '../assets/images/github.png'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../AuthContext'
 
-const logInWithEmail = () => {}
 const logInWithGoogle = () => {}
 const logInWithGithub = () => {}
 
 const SignIn = () => {
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const { SetLoginAuth } = useContext(AuthContext);
+    const navigate = useNavigate()
+    
+    const logInWithEmail = () => {
+      try {
+        console.log("Sending request with data:", {
+          username: username, 
+          password: password
+        })
+    
+        fetch('http://127.0.0.1:8000/login/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username, 
+            password: password
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log("Response data:", data)
+          SetLoginAuth();
+          navigate('/')
+        })
+      } catch (error) {
+        console.error("Error:", error)
+      }
+    }
 
     return (
         <div className="bg-gradient-to-br from-zinc-900 via-black to-zinc-800 h-screen w-screen">
@@ -35,16 +67,19 @@ const SignIn = () => {
                     </div>
     
                     <form className="flex flex-col" 
-                        onSubmit={logInWithEmail}
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          logInWithEmail();
+                      }}
                     >
-                    <label name="email" htmlFor='email' className="text-gray-400 text-lg pb-1 font-medium">Email</label>
+                    <label name="username" htmlFor='username' className="text-gray-400 text-lg pb-1 font-medium">Username</label>
                       <input 
-                        type="email"
-                        name="email"
-                        id="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        name="username"
+                        id="username"
+                        onChange={(e) => setUsername(e.target.value)}
                         className="p-3 pl-5 mb-5 mt-1 rounded-md bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none"
-                        placeholder='Email'
+                        placeholder='Username'
                       />
     
                       <label name="password" htmlFor='password' className="text-gray-400 text-lg pb-1 font-medium">Password</label>
@@ -56,9 +91,9 @@ const SignIn = () => {
                         className="p-3 pl-5 mb-4 mt-1 rounded-md w-full bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none "
                         placeholder='Password'
                       />
+                      <button type="submit" className="mt-5 bg-gradient-to-r from-blue-500 via-pink-500 to-pink-300 rounded-md py-3 text-lg text-gray-100 font-medium ">Login</button>
                     </form>
     
-                    <button onClick={logInWithEmail} className="mt-5 bg-gradient-to-r from-blue-500 via-pink-500 to-pink-300 rounded-md py-3 text-lg text-gray-100 font-medium ">Login</button>
     
                     <p className="mt-6 mb-4 w-full justify-center text-gray-400 items-center flex">Don't have an account?<a href="/register"><span className="underline underline-offset-4 decoration-gray-200 ml-1 text-blue-500">Register here.</span></a> </p>
                 </div>

@@ -14,9 +14,7 @@ import { useDispatch } from "react-redux";
 import { setPlayerDataStore, setPlayerDataError } from "../redux/playerDataSlice";
 
 const StatCard = ({ stat, playerData }) => {
-    // const [playerData, setPlayerData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    // const dispatch = useDispatch();
 
     const fetchData = (stat) => {
       setIsLoading(true);
@@ -31,31 +29,27 @@ const StatCard = ({ stat, playerData }) => {
           try {
             const parsedData = JSON.parse(fetchedData);
             setPlayerData(parsedData);
-            // dispatch(setPlayerDataStore(parsedData));
           } catch (error) {
-            console.error('Parsing error:', error);
-            // dispatch(setPlayerDataError(error.message));
+            // console.error('Parsing error:', error);
           }
         })
         .catch(error => {
           console.log('Fetch error:', error);
-          // dispatch(setPlayerDataError(error.message));
         })
         .finally(() => {
           setIsLoading(false);
         });
     }
 
-    useEffect(() => {
-        // fetchData(stat.Abbreviation);  
-        console.log("Playerssss Data", playerData);
+    useEffect(() => {  
+        // console.log("Playerssss Data", playerData);
     }, []);
   
     useEffect(() => {
       if (playerData.length > 0) {
-        console.log("Player 0", playerData[0]?.PLAYER_NAME);
-        console.log("Player 1", playerData[1]);
-        console.log("STATTTTT: ", stat)
+        // console.log("Player 0", playerData[0]?.PLAYER_NAME);
+        // console.log("Player 1", playerData[1]);
+        // console.log("STATTTTT: ", stat)
       }
     }, [playerData])
 
