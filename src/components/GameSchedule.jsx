@@ -66,7 +66,11 @@ const GameSchedule = () => {
 
   return (
     <div className="h-screen w-screen">
-      <div className="flex flex-col py-20 px-16 md:px-20 lg:px-24 xl:px-40 2xl:px-80 ">
+      {
+        isLoading ? (<div className="flex m-40 text-xl">Loading...</div>)
+        :
+        (
+          <div className="flex flex-col py-20 px-16 md:px-20 lg:px-24 xl:px-40 2xl:px-80 ">
         <div className="relative">
 
           <div className="flex gap-5 rounded-md" >
@@ -157,6 +161,9 @@ const GameSchedule = () => {
 
           </div>
       </div>
+        )
+      }
+      
     </div>
   )
 }

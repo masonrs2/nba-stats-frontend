@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import google from '/Images/google.png'
-import github from '/Images/github.png'
 import { Link } from 'react-router-dom'
+import google from '../assets/images/google.png'
+import github from '../assets/images/github.png'
 
 const signUpWithEmail = () => {}
 const logInWithGoogle = () => {}
@@ -11,6 +11,9 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [fullName, setFullName] = useState('')
+    const [username, setUsername] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
 
 
   return (
@@ -39,30 +42,62 @@ const SignUp = () => {
                 <form className="flex flex-col" 
                     onSubmit={signUpWithEmail}
                 >
-                <div>
 
-                </div>
-                
 
-                <label name="email" htmlFor='email' className="text-gray-400 text-lg pb-1 font-medium">Email</label>
-                  <input 
-                    type="email"
-                    name="email"
-                    id="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="p-3 pl-5 mb-5 mt-1 rounded-md bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none"
-                    placeholder='Email'
-                  />
+                  <div className="flex flex-row gap-6" >
+                    <div className="flex flex-col">
+                      <label name="firstName" htmlFor='firstName' className="text-gray-400 text-lg pb-1 font-medium">First Name</label>
+                      <input 
+                          type="text"
+                          name="firstName"
+                          id="firstName"
+                          onChange={(e) => setFirstName(e.target.value)}
+                          className="p-3 pl-5 mb-5 mt-1 rounded-md bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none"
+                          placeholder='First Name'
+                      />
+                    </div>
 
-                  <label name="password" htmlFor='password' className="text-gray-400 text-lg pb-1 font-medium">Password</label>
-                  <input 
-                    type="password"
-                    name="password"
-                    id="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="p-3 pl-5 mb-4 mt-1 rounded-md w-full bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none "
-                    placeholder='Password'
-                  />
+                    <div className="flex flex-col">  
+                      <label name="lastName" htmlFor='lastName' className="text-gray-400 text-lg pb-1 font-medium">Last Name</label>
+                      <input 
+                          type="text"
+                          name="lastName"
+                          id="lastName"
+                          onChange={(e) => setLastName(e.target.value)}
+                          className="p-3 pl-5 mb-5 mt-1 rounded-md bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none"
+                          placeholder='Last Name'
+                      />
+                    </div>
+                  </div>
+                  <label name="username" htmlFor='username' className="text-gray-400 text-lg pb-1 font-medium">Username</label>
+                    <input 
+                      type="text"
+                      name="username"
+                      id="username"
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="p-3 pl-5 mb-5 mt-1 rounded-md bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none"
+                      placeholder='Username'
+                    />
+
+                  <label name="email" htmlFor='email' className="text-gray-400 text-lg pb-1 font-medium">Email</label>
+                    <input 
+                      type="email"
+                      name="email"
+                      id="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="p-3 pl-5 mb-5 mt-1 rounded-md bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none"
+                      placeholder='Email'
+                    />
+
+                    <label name="password" htmlFor='password' className="text-gray-400 text-lg pb-1 font-medium">Password</label>
+                    <input 
+                      type="password"
+                      name="password"
+                      id="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="p-3 pl-5 mb-4 mt-1 rounded-md w-full bg-gray-500/60 outline outline-gray-500 active:bg-gray-500/70 text-gray-300 active:ring active:ring-blue-600 active:hover-none "
+                      placeholder='Password'
+                    />
                 </form>
 
                 <button onClick={signUpWithEmail} className="mt-5 bg-gradient-to-r from-blue-500 via-pink-500 to-pink-300 rounded-md py-3 text-lg text-gray-100 font-medium ">Sign up</button>

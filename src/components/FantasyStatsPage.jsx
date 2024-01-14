@@ -60,28 +60,33 @@ const FantasyStatsPage = () => {
               
               <TableBody>
                 {
-                  fantasyStatsData.map((player, index) => (
-                    <TableRow key={index} className=" text-gray-400 outline outline-[.5px] outline-gray-500 cursor-pointer hover:bg-zinc-800">
-                      {
-                        FantasyStatsTypes.map((statType, idx) => (
-                          idx === 0 ? (<div>
-                            <TableCell key={idx} className="flex-1">
-                              <p className="flex gap-4 items-center font-medium w-[230px]">
-                                {player?.PLAYER_NAME} 
-                                <div className="flex flex-row gap-1 font-light text-sm  text-zinc-300">
-                                 {player?.TEAM_ABBREVIATION}
-                                </div>
-                              </p>
-                            </TableCell>
-                          </div>) : (
-                          <TableCell key={idx} className="">
-                            {statType.isDecimal ? (player[statType.Stat] ? player[statType.Stat].toFixed(1) : '') : player[statType.Stat] || 'n/a'}
-                          </TableCell>
-                        )))
-                      }
-                    </TableRow>
-                  ))
+                  isLoading ? (<div className="flex text-xl text-gray-400 items-center justify-center">Loading...</div>)
+                  : 
+                  (
+                      fantasyStatsData.map((player, index) => (
+                        <TableRow key={index} className=" text-gray-400 outline outline-[.5px] outline-gray-500 cursor-pointer hover:bg-zinc-800">
+                          {
+                            FantasyStatsTypes.map((statType, idx) => (
+                              idx === 0 ? (<div>
+                                <TableCell key={idx} className="flex-1">
+                                  <p className="flex gap-4 items-center font-medium w-[230px]">
+                                    {player?.PLAYER_NAME} 
+                                    <div className="flex flex-row gap-1 font-light text-sm  text-zinc-300">
+                                     {player?.TEAM_ABBREVIATION}
+                                    </div>
+                                  </p>
+                                </TableCell>
+                              </div>) : (
+                              <TableCell key={idx} className="">
+                                {statType.isDecimal ? (player[statType.Stat] ? player[statType.Stat].toFixed(1) : '') : player[statType.Stat] || 'n/a'}
+                              </TableCell>
+                            )))
+                          }
+                        </TableRow>
+                      ))
+                  )
                 }
+                
               </TableBody>
             </Table>
 
