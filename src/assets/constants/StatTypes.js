@@ -1,6 +1,6 @@
 export const AllStatTypes = [
-  "PLAYER_ID",
-  "PLAYER_NAME",
+  "PLAYER ID",
+  "PLAYER NAME",
   "NICKNAME",
   "TEAM_ID",
   "TEAM_ABBREVIATION",

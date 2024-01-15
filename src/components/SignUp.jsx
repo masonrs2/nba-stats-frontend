@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import google from '../assets/images/google.png'
 import github from '../assets/images/github.png'
+import { AuthContext } from '../AuthContext'
+import { useContext } from 'react'
 
 const logInWithGoogle = () => {}
 const logInWithGithub = () => {}
@@ -15,6 +17,7 @@ const SignUp = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const navigate = useNavigate()
+    const { SetAccountInfo } = useContext(AuthContext);
 
     const signUpWithEmail = () => {
 
@@ -57,6 +60,7 @@ const SignUp = () => {
         })
         .then((data) => {
           // Handle the response data here
+          SetAccountInfo(username, email, firstName, lastName);
           navigate('/login')
           if(data?.status === "success") {
 

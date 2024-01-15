@@ -18,6 +18,16 @@ export const AuthProvider = ({ children }) => {
     console.log("Signout Auth: ", isAuthenticated)
   }
 
+  const SetAccountInfo = (username, email, firstName, lastName ) => {
+    setUser({ 
+        username: username, 
+        email: email,
+        first_name: firstName,
+        last_name: lastName,
+     });
+    console.log("User : ", user)
+  }
+
   useEffect(() => {
     // Fetch the authentication status from the backend
     if(localStorage.getItem('isAuthenticated') === null) {
@@ -29,7 +39,12 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(data.is_authenticated);
            
             if(data.is_authenticated) {
-                setUser({ username: data.username, email: data.email })
+                setUser({ 
+                    username: data.username, 
+                    email: data.email,
+                    first_name: data.first_name,
+                    last_name: data.last_name,
+                })
             }
             setIsLoading(false);
           });
@@ -39,15 +54,18 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Save isAuthenticated to localStorage whenever it changes
     localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated));
-    console.log("user: ", user)
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    console.log("user: ", user);
+  }, [user]);
 
 //   if (isLoading) {
 //     return <div>Loading...</div>; // Or your custom loading component
 //   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, SetLoginAuth, SetLogoutAuth, isLoading }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, SetLoginAuth, SetLogoutAuth, isLoading, SetAccountInfo }}>
       {children}
     </AuthContext.Provider>
   );

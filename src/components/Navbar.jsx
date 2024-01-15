@@ -10,7 +10,6 @@ const Navbar = () => {
   
   useEffect(() => {
       console.log("isAuthenticated: ", isAuthenticated)
-      if(!isLoading) console.log("username: ", user.username) 
       
   }, [isAuthenticated])
   return (
