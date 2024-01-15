@@ -22,7 +22,7 @@ const SignIn = () => {
           password: password
         })
     
-        fetch('http://127.0.0.1:8000/login/', {
+        fetch('https://nba-stats-backend-production.up.railway.app/login/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

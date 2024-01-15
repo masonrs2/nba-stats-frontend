@@ -116,7 +116,7 @@ const GameSchedule = () => {
                       <TableHead key={index}>{tableHeader}</TableHead>
                     ))
                   }
-                </TableRow>
+              </TableRow>
               </TableHeader>
               
               <TableBody>

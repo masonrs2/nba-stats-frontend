@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
     () => JSON.parse(localStorage.getItem('isAuthenticated')) || false
   );
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({});
 
   const SetLoginAuth = () => {
     setIsAuthenticated(true);
@@ -20,13 +21,17 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Fetch the authentication status from the backend
     if(localStorage.getItem('isAuthenticated') === null) {
-        fetch('http://127.0.0.1:8000/check-login/', {
+        fetch('https://nba-stats-backend-production.up.railway.app/check-login/', {
             credentials: 'include',
         })
           .then(response => response.json())
           .then(data => {
             setIsAuthenticated(data.is_authenticated);
-            // setIsLoading(false);
+           
+            if(data.is_authenticated) {
+                setUser({ username: data.username, email: data.email })
+            }
+            setIsLoading(false);
           });
     }
   }, []);
@@ -34,6 +39,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Save isAuthenticated to localStorage whenever it changes
     localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated));
+    console.log("user: ", user)
   }, [isAuthenticated]);
 
 //   if (isLoading) {
@@ -41,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 //   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, SetLoginAuth, SetLogoutAuth }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, SetLoginAuth, SetLogoutAuth, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

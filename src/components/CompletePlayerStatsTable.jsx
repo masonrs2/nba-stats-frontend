@@ -33,10 +33,10 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
                         CompleteStatTypes.map((statType, idx) => (
                           idx === 0 
                           ? (<TableCell className="flex-1">
-                                <p className="flex gap-4 items-center font-medium w-[230px]">
+                                <p className="flex gap-2 items-center font-medium w-[230px]">
                                   {player?.PLAYER_NAME} 
-                                  <div className="flex flex-row gap-1 font-light text-sm  text-zinc-300">
-                                    ({player?.AGE}) 
+                                  <div className="flex flex-row gap-2 font-light text-sm  text-zinc-300">
+                      
                                     <p>•</p> {player?.TEAM_ABBREVIATION}
                                   </div>
                                 </p>

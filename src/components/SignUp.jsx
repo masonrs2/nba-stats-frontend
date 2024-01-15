@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import google from '../assets/images/google.png'
 import github from '../assets/images/github.png'
 
@@ -14,6 +14,7 @@ const SignUp = () => {
     const [username, setUsername] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const navigate = useNavigate()
 
     const signUpWithEmail = () => {
 
@@ -32,7 +33,7 @@ const SignUp = () => {
         password2: password2,
       })
     
-      fetch('http://127.0.0.1:8000/signup/', {
+      fetch('https://nba-stats-backend-production.up.railway.app/signup/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,6 +57,10 @@ const SignUp = () => {
         })
         .then((data) => {
           // Handle the response data here
+          navigate('/login')
+          if(data?.status === "success") {
+
+          }
           console.log("Response data:", data);
         })
         .catch((error) => {
