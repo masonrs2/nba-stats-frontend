@@ -10,9 +10,13 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
 
     const handleIconClick = (index) => {
       const newClickedStates = [...clickedStates];
-      newClickedStates[index] = !newClickedStates[index];
+      const clickedState = newClickedStates[index];
+      newClickedStates[index] = newClickedStates[index] === null ? true : !newClickedStates[index];
       setClickedStates(newClickedStates);
 
+      // add logic that checks if (clickedState === null or clickedState == false) then add to watchlist
+      // if clickedState === true then remove from watchlist
+      
       // try {
       //   fetch(`http://127.0.0.1:8000/watchlist`, {
       //     method: 'POST', 
