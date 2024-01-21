@@ -28,9 +28,12 @@ export const AuthProvider = ({ children }) => {
     console.log("User : ", user)
   }
 
+  const SetUserAccountInfro = 
+
   useEffect(() => {
     // Fetch the authentication status from the backend
     if(localStorage.getItem('isAuthenticated') === null) {
+      console.log("isAuthenticated is null")
         fetch('https://nba-stats-backend-production.up.railway.app/check-login/', {
             credentials: 'include',
         })
@@ -57,7 +60,7 @@ export const AuthProvider = ({ children }) => {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    console.log("user: ", user);
+    console.log("user(auth context): ", user);
   }, [user]);
 
 //   if (isLoading) {
@@ -65,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 //   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, SetLoginAuth, SetLogoutAuth, isLoading, SetAccountInfo }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, setUser, SetLoginAuth, SetLogoutAuth, isLoading, SetAccountInfo }}>
       {children}
     </AuthContext.Provider>
   );

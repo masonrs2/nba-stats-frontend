@@ -12,7 +12,7 @@ const logInWithGithub = () => {}
 const SignIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const { SetLoginAuth } = useContext(AuthContext);
+    const { SetLoginAuth, setUser } = useContext(AuthContext);
     const navigate = useNavigate()
     
     const logInWithEmail = () => {
@@ -36,6 +36,7 @@ const SignIn = () => {
         .then(data => {
           console.log("Response data:", data)
           SetLoginAuth();
+          setUser({ username: username })
           navigate('/')
         })
       } catch (error) {

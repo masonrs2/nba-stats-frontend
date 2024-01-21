@@ -1,4 +1,7 @@
 import React from 'react'
+import { WatchlistTableHeaders } from '../assets/constants/WatchlistTable';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 import {
     Table,
     TableBody,
@@ -7,8 +10,9 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table";
-import { WatchlistTableHeaders } from '../assets/constants/WatchlistTable';
+
 const Account = () => {
+//   const {  }
   return (
     <div className="">
         <div className="flex flex-col pt-8 px-16 md:px-20 lg:px-24 2xl:px-32">
@@ -27,8 +31,10 @@ const Account = () => {
                     </TableRow>
                 </TableHeader>
 
-                <TableBody>
-                    
+                <TableBody>  
+                    {
+
+                    }
                 </TableBody>
             </Table>
         </div>

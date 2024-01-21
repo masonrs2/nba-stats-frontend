@@ -1,53 +1,89 @@
 // PlayerStatsTable.jsx
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { CompleteStatTypes, GetStatName } from '../assets/constants/StatTypes';
 import { CiStar } from "react-icons/ci";
+import { AuthContext } from '../AuthContext';
 
 const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
     const [isClicked, setIsClicked] = useState(false);
-    const [clickedStates, setClickedStates] = useState(Array(completePlayerData.length).fill(false));
+    const [clickedStates, setClickedStates] = useState(
+      completePlayerData.map(() => ({ isClicked: false, first_name: null, last_name: null, team: null, player_id: null}))
+    );
+    const { isAuthenticated, isLoading, user } = useContext(AuthContext);
 
-    const handleIconClick = (index) => {
+    useEffect(() => {
+      console.log("isAuthenticated2: ", isAuthenticated)
+      if(isAuthenticated) {
+        console.log("user (player table): ", user)
+      }
+    },[user])
+
+    const handleIconClick = (index, firstName, lastName, Team, playerId) => {
       const newClickedStates = [...clickedStates];
-      const clickedState = newClickedStates[index];
-      newClickedStates[index] = newClickedStates[index] === null ? true : !newClickedStates[index];
+      newClickedStates[index].isClicked = !newClickedStates[index].isClicked;
       setClickedStates(newClickedStates);
-
+      
       // add logic that checks if (clickedState === null or clickedState == false) then add to watchlist
       // if clickedState === true then remove from watchlist
-      
-      // try {
-      //   fetch(`http://127.0.0.1:8000/watchlist`, {
-      //     method: 'POST', 
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       username: "test",
-      //       first_name: "Lebron",
-      //       last_name: "James",
-      //       team: "lakers",
-      //       player_id: 123
-      //     })
-      //   })
-      //   .then((response) => {
-      //     if (!response.ok) {
-      //       return response.text().then(text => {
-      //         throw new Error(`Network response was not ok. Status: ${response.status}, Message: ${text}`);
-      //       });
-      //     }
-      //     return response.json();
-      //   })
-      //   .then((data) => {
-      //     console.log("Response data:", data);
-      //   })
-      // } catch (error) {
-      //   console.log(error)
-      // }
+      console.log("newClickedStates[index].isClicked: ", newClickedStates[index].isClicked)
+      if(!newClickedStates[index].isClicked === false || newClickedStates[index].isClicked === null) {
+        console.log("ggTESTSTSTSTSTSTSTSTSTSTSTSTSTST")
+          try {
+            if(user) {
+                fetch(`http://127.0.0.1:8000/api/watchlist`, {
+                  method: 'POST', 
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    username: user?.username,
+                    first_name: firstName,
+                    last_name: lastName,
+                    team: Team,
+                    player_id: playerId
+                  })
+                })
+                .then((response) => {
+                  if (!response.ok) {
+                    return response.text().then(text => {
+                      throw new Error(`Network response was not ok. Status: ${response.status}, Message: ${text}`);
+                    });
+                  }
+                  return response.json();
+                })
+                .then((data) => {
+                  console.log("Response data:", data);
+                })
+            }
+          } catch (error) {
+            console.log(error)
+          }
+      } else {
+        try {
+          if(user) {
+            console.log("gosgosgosgo username: ", user?.username) 
+            fetch(`http://127.0.0.1:8000/api/watchlist?player_id=${playerId}&username=${user?.username}`, {
+              method: 'DELETE',
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  return response.text().then(text => {
+                    throw new Error(`Network response was not ok. Status: ${response.status}, Message: ${text}`);
+                  });
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log("Response data:", data);
+              })
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
 
     };
-
 
     console.log("stat11: ", stat)
     console.log("completePlayerData11: ", completePlayerData)
@@ -82,8 +118,8 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
                                 <div className="flex gap-2 items-center font-medium w-[230px]">
                                 <CiStar 
                                   size={18}
-                                  onClick={() => handleIconClick(index)}
-                                  className={`cursor-pointer ${ clickedStates[index] ? 'text-yellow-400' : 'text-zinc-400'  }`} 
+                                  onClick={() => handleIconClick(index, player?.PLAYER_NAME, player?.PLAYER_NAME, player?.TEAM_ABBREVIATION, player?.PLAYER_ID)}
+                                  className={`cursor-pointer ${ clickedStates[index].isClicked ? 'text-yellow-400' : 'text-zinc-400'  }`} 
                                 />
                                   <p>{player?.PLAYER_NAME} </p>
                                   <div className="flex flex-row gap-2 font-light text-sm  text-zinc-300">
