@@ -26,7 +26,9 @@ export const AuthProvider = ({ children }) => {
       last_name: lastName,
     };
     setUser(user);
-    localStorage.setItem('user', JSON.stringify(user));
+    console.log("999")
+    console.log("JSON User", JSON.stringify(user))
+    localStorage.setItem('User', JSON.stringify(user));
 };
 
   const SetUserAccountInfro = 
@@ -60,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    console.log("")
+    console.log("localUser: ", localUser)
   }, [localUser])
 
   useEffect(() => {
