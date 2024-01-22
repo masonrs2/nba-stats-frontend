@@ -22,7 +22,7 @@ const Account = () => {
     const fetchWatchlist = () => {
         console.log("user (account): ", user)
         try {
-            fetch(`http://127.0.0.1:8000/api/watchlist?username=${user?.username}`, {
+            fetch(`https://nba-stats-backend-production.up.railway.app/api/watchlist?username=${user?.username}`, {
                 method: 'GET',
             })
                 .then(response => {

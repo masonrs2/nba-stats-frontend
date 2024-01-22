@@ -46,7 +46,7 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
         console.log("ggtestUser: ", user)
           try {
             if(user) {
-                fetch(`http://127.0.0.1:8000/api/watchlist`, {
+                fetch(`https://nba-stats-backend-production.up.railway.app/api/watchlist`, {
                   method: 'POST', 
                   headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
         try {
           if(user) {
             console.log("gosgosgosgo username: ", user?.username) 
-            fetch(`http://127.0.0.1:8000/api/watchlist?player_id=${playerId}&username=${user?.username}`, {
+            fetch(`https://nba-stats-backend-production.up.railway.app/api/watchlist?player_id=${playerId}&username=${user?.username}`, {
               method: 'DELETE',
             })
               .then((response) => {
