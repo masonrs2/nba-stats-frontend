@@ -36,8 +36,6 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
       newClickedStates[index].player_id = playerId;
       setClickedStates(newClickedStates);
       
-      // add logic that checks if (clickedState === null or clickedState == false) then add to watchlist
-      // if clickedState === true then remove from watchlist
       console.log("newClickedStates[index].isClicked: ", newClickedStates[index].isClicked)
       if(!newClickedStates[index].isClicked === false || newClickedStates[index].isClicked === null) {
         console.log("ggtestUser: ", user)
@@ -130,7 +128,7 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
                                 <div className="flex gap-2 items-center font-medium w-[230px]">
                                 <CiStar 
                                   size={18}
-                                  onClick={() => handleIconClick(index, player?.PLAYER_NAME, player?.PLAYER_NAME, player?.TEAM_ABBREVIATION, player?.PLAYER_ID)}
+                                  onClick={() => handleIconClick(index, player?.PLAYER_NAME.split(' ')[0],player?.PLAYER_NAME.split(' ')[1], player?.TEAM_ABBREVIATION, player?.PLAYER_ID)}
                                   className={`cursor-pointer ${ clickedStates[index].isClicked ? 'text-yellow-400' : 'text-zinc-400'  }`} 
                                 />
                                   <p>{player?.PLAYER_NAME} </p>
