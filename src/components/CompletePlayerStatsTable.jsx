@@ -8,6 +8,7 @@ import { AuthContext } from '../AuthContext';
 const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
     const [isClicked, setIsClicked] = useState(false);
     const [clickedStates, setClickedStates] = useState(
+      () => JSON.parse(localStorage.getItem('clickedStates')) || 
       completePlayerData.map(() => ({ isClicked: false, first_name: null, last_name: null, team: null, player_id: null}))
     );
     const { isAuthenticated, isLoading, } = useContext(AuthContext);
@@ -29,6 +30,10 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
         console.log("user (player table): ", user)
       }
     },[user])
+
+    useEffect(() => {
+      localStorage.setItem('clickedStates', JSON.stringify(clickedStates));
+    }, [clickedStates]);
 
     const handleIconClick = (index, firstName, lastName, Team, playerId) => {
       const newClickedStates = [...clickedStates];
