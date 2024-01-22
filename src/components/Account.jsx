@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { WatchlistTableHeaders } from '../assets/constants/WatchlistTable';
 import { useContext } from 'react';
 import { AuthContext } from '../AuthContext';
@@ -12,12 +12,26 @@ import {
   } from "@/components/ui/table";
 
 const Account = () => {
+    const { isAuthenticated, isLoading, user } = useContext(AuthContext);
+
+    const fetchWatchlist = () => {
+        console.log("user (account): ", user)
+        try {
+            
+        } catch (error) { 
+
+        }
+    }
+
+    useEffect(() => {
+        fetchWatchlist()
+    }, [])
+
 //   const {  }
   return (
     <div className="">
         <div className="flex flex-col pt-8 px-16 md:px-20 lg:px-24 2xl:px-32">
             <h1 className="text-gray-400 font-semibold tracking-wide text-xl" >Watchlist</h1>
-
             <hr className="mt-2" />
 
             <Table>

@@ -19,14 +19,15 @@ export const AuthProvider = ({ children }) => {
   }
 
   const SetAccountInfo = (username, email, firstName, lastName ) => {
-    setUser({ 
-        username: username, 
-        email: email,
-        first_name: firstName,
-        last_name: lastName,
-     });
-    console.log("User : ", user)
-  }
+    const user = { 
+      username: username, 
+      email: email,
+      first_name: firstName,
+      last_name: lastName,
+    };
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+};
 
   const SetUserAccountInfro = 
 
@@ -41,18 +42,26 @@ export const AuthProvider = ({ children }) => {
           .then(data => {
             setIsAuthenticated(data.is_authenticated);
            
-            if(data.is_authenticated) {
+            if(data.is_authenticated && !user) {
                 setUser({ 
                     username: data.username, 
                     email: data.email,
                     first_name: data.first_name,
                     last_name: data.last_name,
-                })
+                });
             }
             setIsLoading(false);
           });
     }
   }, []);
+
+  const [localUser, setLocalUser] = useState(
+    () => JSON.parse(localStorage.getItem('User')) || {}
+  );
+
+  useEffect(() => {
+    console.log("")
+  }, [localUser])
 
   useEffect(() => {
     // Save isAuthenticated to localStorage whenever it changes

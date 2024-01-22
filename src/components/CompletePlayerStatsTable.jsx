@@ -10,10 +10,21 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
     const [clickedStates, setClickedStates] = useState(
       completePlayerData.map(() => ({ isClicked: false, first_name: null, last_name: null, team: null, player_id: null}))
     );
-    const { isAuthenticated, isLoading, user } = useContext(AuthContext);
+    const { isAuthenticated, isLoading, } = useContext(AuthContext);
+    const [user, setUser] = useState(
+      () => JSON.parse(localStorage.getItem('User')) || {}
+    );
 
     useEffect(() => {
-      console.log("isAuthenticated2: ", isAuthenticated)
+      const storedUser = JSON.parse(localStorage.getItem('User'));
+      if (storedUser) {
+        setUser(storedUser);
+      }
+
+      console.log("Stored User: ", storedUser)
+    }, []);
+
+    useEffect(() => {
       if(isAuthenticated) {
         console.log("user (player table): ", user)
       }
@@ -22,13 +33,14 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
     const handleIconClick = (index, firstName, lastName, Team, playerId) => {
       const newClickedStates = [...clickedStates];
       newClickedStates[index].isClicked = !newClickedStates[index].isClicked;
+      newClickedStates[index].player_id = playerId;
       setClickedStates(newClickedStates);
       
       // add logic that checks if (clickedState === null or clickedState == false) then add to watchlist
       // if clickedState === true then remove from watchlist
       console.log("newClickedStates[index].isClicked: ", newClickedStates[index].isClicked)
       if(!newClickedStates[index].isClicked === false || newClickedStates[index].isClicked === null) {
-        console.log("ggTESTSTSTSTSTSTSTSTSTSTSTSTSTST")
+        console.log("ggtestUser: ", user)
           try {
             if(user) {
                 fetch(`http://127.0.0.1:8000/api/watchlist`, {
@@ -85,8 +97,8 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
 
     };
 
-    console.log("stat11: ", stat)
-    console.log("completePlayerData11: ", completePlayerData)
+    // console.log("stat11: ", stat)
+    // console.log("completePlayerData11: ", completePlayerData)
   return (
     <div className="flex flex-col w-full h-full text-zinc-400 pt-8">
       <div className=" flex w-screen flex-col px-16 md:px-20 lg:px-24 xl:px-32 2xl:px-48 ">
@@ -114,7 +126,7 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
                       {
                         CompleteStatTypes.map((statType, idx) => (
                           idx === 0 
-                          ? (<TableCell className="flex-1">
+                          ? (<TableCell className="flex-1" key={idx}>
                                 <div className="flex gap-2 items-center font-medium w-[230px]">
                                 <CiStar 
                                   size={18}

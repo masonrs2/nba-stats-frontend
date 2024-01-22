@@ -20,7 +20,7 @@ const TeamLeadersTableCards = () => {
           try {
             setAllTeamStatsData(fetchedData);
 
-            console.log("All Player Stats Data11", fetchedData)
+            // console.log("All Player Stats Data11", fetchedData)
           } catch (error) {
             console.error('Parsing error:', error);
           }

@@ -53,7 +53,7 @@ const CompletePlayerOrTeamStatsTable = () => {
 
   useEffect(() => {
     fetchData(stat);
-    console.log("completePlayerDataaaa: ", completePlayerOrTeamData)
+    // console.log("completePlayerDataaaa: ", completePlayerOrTeamData)
   },[tableType])
 
   return (
