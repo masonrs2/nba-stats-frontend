@@ -18,7 +18,7 @@ const StatCard = ({ stat, playerData }) => {
 
     const fetchData = (stat) => {
       setIsLoading(true);
-      fetch(`https://nba-stats-backend-production.up.railway.app/api/playerLeadingStats?stat=${stat}`)
+      fetch(`http://127.0.0.1:8000/api/playerLeadingStats?stat=${stat}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,7 +49,7 @@ const StatCard = ({ stat, playerData }) => {
       if (playerData.length > 0) {
         // console.log("Player 0", playerData[0]?.PLAYER_NAME);
         // console.log("Player 1", playerData[1]);
-        // console.log("STATTTTT: ", stat)
+        console.log("STATTTTT: ", stat)
       }
     }, [playerData])
 
@@ -83,7 +83,7 @@ const StatCard = ({ stat, playerData }) => {
                     <div className="flex flex-col px-2 text-2xl items-center text-right">
                     {playerData.length > 0 && playerData[0][stat.Abbreviation] && 
                         <p className="text-right w-full">
-                        {stat.Abbreviation === 'PPG' ? playerData[0][stat.Abbreviation].toFixed(1) : (playerData[0][stat.Abbreviation] / playerData[0]["GP"]).toFixed(1)}
+                        {stat.Abbreviation === 'PPG' ? playerData[0][stat.Abbreviation].toFixed(1) : (playerData[0][stat.Abbreviation].toFixed(1))}
                         </p>
                     }
                     <p className="font-light text-xs text-right w-full">{stat?.Abbreviation.slice(0,1)}PG</p>
@@ -117,8 +117,7 @@ const StatCard = ({ stat, playerData }) => {
                     <TableCell className="font-light ">
                         {stat.Abbreviation === "PPG" 
                             ? player[stat.Abbreviation]?.toFixed(1) 
-                            : (player[stat.Abbreviation] / player?.GP)?.toFixed(1)
-                        }
+                            : (player[stat.Abbreviation]?.toFixed(1))}
                     </TableCell>
                 </TableRow>
               ))

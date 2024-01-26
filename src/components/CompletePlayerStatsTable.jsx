@@ -144,7 +144,7 @@ const CompletePlayerStatsTable = ({ stat, completePlayerData }) => {
                                 </div>
                               </TableCell>
                             )
-                          : (<TableCell key={idx} className="flex-1">{statType.IsDecimal ? (player[statType.Stat] ? player[statType.Stat].toFixed(1) : '') : player[statType.Stat] || 'n/a'}</TableCell>)
+                          : (<TableCell key={idx} className="flex-1">{statType.IsDecimal ? (player[statType.Stat] ? player[statType.Stat].toFixed(1) : '') : player[statType.Stat].toFixed(1) || 'n/a'}</TableCell>)
                         ))
                       }
                     </TableRow>
