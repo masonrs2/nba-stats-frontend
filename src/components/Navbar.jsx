@@ -79,7 +79,7 @@ const Navbar = () => {
             </div>
 
                 <div className="items-center justify-between hidden w-full lg:flex md:w-auto md:order-1" id="navbar-sticky">
-                    <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-blue-700 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <ul className="flex flex-col p-4 mr-40 xl:mr-60 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-blue-700 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         {
                             NavbarList.map((item, index) => (
                                 <Link key={index} to={{

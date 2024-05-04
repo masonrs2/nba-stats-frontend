@@ -77,7 +77,7 @@ const LeadingTeamStatsCard = ({ stat, isLoading, teamData }) => {
                     <div className="flex flex-col px-2 text-2xl items-center text-right">
                     {teamData.length > 0 && teamData[0][stat.Abbreviation] && 
                         <p className="text-right w-full">
-                        {stat.Abbreviation === 'PPG' ? teamData[0][stat.Abbreviation]?.toFixed(1) : (teamData[0][stat.Abbreviation] / teamData[0]["GP"])?.toFixed(1)}
+                        {stat.Abbreviation === 'PPG' ? teamData[0][stat.Abbreviation]?.toFixed(1) : (teamData[0][stat.Abbreviation]?.toFixed(1))}
                         </p>
                     }
                     <p className="font-light text-xs text-right w-full">{stat?.Abbreviation.slice(0,1)}PG</p>
@@ -109,7 +109,7 @@ const LeadingTeamStatsCard = ({ stat, isLoading, teamData }) => {
                     <TableCell className="font-light ">
                         {stat.Abbreviation === "PPG" 
                             ? player[stat.Abbreviation]?.toFixed(1) 
-                            : (player[stat.Abbreviation] / player?.GP)?.toFixed(1)
+                            : (player[stat.Abbreviation]?.toFixed(1))
                         }
                     </TableCell>
                 </TableRow>

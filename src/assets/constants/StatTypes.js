@@ -50,7 +50,7 @@ export const LeadingStats = [
 ];
 
 export const LeadingTeamStats = [
-  { Abbreviation: "PPG", Stat: "Points" },
+  { Abbreviation: "PTS", Stat: "Points" },
   { Abbreviation: "FG3M", Stat: "3 Points Made" },
   { Abbreviation: "TOV", Stat: "Turnovers" },
   { Abbreviation: "REB", Stat: "Rebounds" },

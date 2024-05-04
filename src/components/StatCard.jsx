@@ -18,7 +18,7 @@ const StatCard = ({ stat, playerData }) => {
 
     const fetchData = (stat) => {
       setIsLoading(true);
-      fetch(`http://127.0.0.1:8000/api/playerLeadingStats?stat=${stat}`)
+      fetch(`https://nba-stats-backend-production.up.railway.app/api/playerLeadingStats?stat=${stat}`)
         .then(response => {
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,7 +49,7 @@ const StatCard = ({ stat, playerData }) => {
       if (playerData.length > 0) {
         // console.log("Player 0", playerData[0]?.PLAYER_NAME);
         // console.log("Player 1", playerData[1]);
-        console.log("STATTTTT: ", stat)
+        // console.log("STATTTTT: ", stat)
       }
     }, [playerData])
 
